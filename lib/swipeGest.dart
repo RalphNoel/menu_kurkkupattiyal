@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
+// This Class For SwipeGesture
+@immutable
 // ignore: must_be_immutable
 class SwipeGest extends StatefulWidget {
-   SwipeGest({
+  SwipeGest({
     Key key,
-   @required this.dragStart,
-     @required this.triggered,
+    @required this.dragStart,
+    @required this.triggered,
     @required this.isWidth,
     @required this.endDeltaValue,
     @required GlobalKey<ScaffoldState> drawerKey,
     @required this.valueListener,
     @required this.dragBubbleColor,
-     @required this.menuIndicatorColor,
-     this.menuIndicatorSize,
-     this.menuIndicatorSizeWidth,
-     this.dragBubbleSizeWidth,
-     this.dragBubbleRadius,
-     this.menuIndicatorRadius,
-   }) : _drawerKey = drawerKey, super(key: key);
+    @required this.menuIndicatorColor,
+    this.menuIndicatorSize,
+    this.menuIndicatorSizeWidth,
+    this.dragBubbleSizeWidth,
+    this.dragBubbleRadius,
+    this.menuIndicatorRadius,
+  })  : _drawerKey = drawerKey,
+        super(key: key);
 
-   int dragStart;
-   int triggered;
-   bool isWidth;
-   int endDeltaValue;
+  int dragStart;
+  int triggered;
+  bool isWidth;
+  int endDeltaValue;
   final GlobalKey<ScaffoldState> _drawerKey;
   final ValueNotifier<double> valueListener;
   final Color dragBubbleColor;
@@ -43,9 +46,9 @@ class _SwipeGestState extends State<SwipeGest> {
     return RawGestureDetector(
       gestures: {
         AllowMultipleHorizontalDragGestureRecognizer:
-        GestureRecognizerFactoryWithHandlers<AllowMultipleHorizontalDragGestureRecognizer>(
-              () => AllowMultipleHorizontalDragGestureRecognizer(),
-              (AllowMultipleHorizontalDragGestureRecognizer instance) {
+            GestureRecognizerFactoryWithHandlers<AllowMultipleHorizontalDragGestureRecognizer>(
+          () => AllowMultipleHorizontalDragGestureRecognizer(),
+          (AllowMultipleHorizontalDragGestureRecognizer instance) {
             instance.onStart = (DragStartDetails startdetails) {
               print('Horizontal Start');
               widget.dragStart = startdetails.sourceTimeStamp.inMilliseconds;
@@ -83,9 +86,9 @@ class _SwipeGestState extends State<SwipeGest> {
       child: RawGestureDetector(
         gestures: {
           AllowMultipleVerticalDragGestureRecognizer:
-          GestureRecognizerFactoryWithHandlers<AllowMultipleVerticalDragGestureRecognizer>(
-                () => AllowMultipleVerticalDragGestureRecognizer(),
-                (AllowMultipleVerticalDragGestureRecognizer instance) {
+              GestureRecognizerFactoryWithHandlers<AllowMultipleVerticalDragGestureRecognizer>(
+            () => AllowMultipleVerticalDragGestureRecognizer(),
+            (AllowMultipleVerticalDragGestureRecognizer instance) {
               instance.onUpdate = (details) {
                 if (widget.isWidth == true) {
                   widget.valueListener.value =
@@ -129,7 +132,9 @@ class _SwipeGestState extends State<SwipeGest> {
                       width: widget.isWidth ? widget.dragBubbleSizeWidth : widget.menuIndicatorSizeWidth,
                       decoration: BoxDecoration(
                         color: widget.isWidth ? widget.dragBubbleColor : widget.menuIndicatorColor,
-                        borderRadius: widget.isWidth ? BorderRadius.circular(widget.dragBubbleRadius) : BorderRadius.circular(widget.menuIndicatorRadius),
+                        borderRadius: widget.isWidth
+                            ? BorderRadius.circular(widget.dragBubbleRadius)
+                            : BorderRadius.circular(widget.menuIndicatorRadius),
                       ),
                     ),
                   ],
@@ -143,6 +148,7 @@ class _SwipeGestState extends State<SwipeGest> {
   }
 }
 
+// This Class For Allow to User to Drag Vertical
 class AllowMultipleVerticalDragGestureRecognizer extends VerticalDragGestureRecognizer {
   @override
   void rejectGesture(int pointer) {
@@ -150,6 +156,7 @@ class AllowMultipleVerticalDragGestureRecognizer extends VerticalDragGestureReco
   }
 }
 
+// This Class For Allow to User to Drag Horizontal
 class AllowMultipleHorizontalDragGestureRecognizer extends HorizontalDragGestureRecognizer {
   @override
   void rejectGesture(int pointer) {
