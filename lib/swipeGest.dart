@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
+// ignore: must_be_immutable
 class SwipeGest extends StatefulWidget {
    SwipeGest({
     Key key,
