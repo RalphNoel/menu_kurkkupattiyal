@@ -18,7 +18,7 @@ Each List of Children can have a Icon or Image, which can be customized providin
 
 KurukkuPattiyal widget has more features like List of Menu, Drawer Background Color, Divider Color, Divider Size, Menu Indicator Color, Menu Indicator Size, Menu Indicator Radius and so on..
  
-![alt text](https://github.com/RalphNoel/KurukkuPattiyal/blob/main/screenshot/demo.gif)
+![alt text](https://github.com/RalphNoel/menu_kurkkupattiyal/blob/main/screenshot/demo.gif)
 
 
 **Example Usage ( complete with all params ):**
