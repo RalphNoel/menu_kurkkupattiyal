@@ -2,7 +2,7 @@ name: menu_kurukkupattiyal
 description: Swipe(Right to left) the indicator to see the menu, and also can change the position of the indicator.
 version: 0.0.1
 
-homepage:
+homepage: https://github.com/RalphNoel/menu_kurkkupattiyal
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
