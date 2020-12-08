@@ -172,7 +172,7 @@ KurukkuPattiyal widget has more features like List of Menu, Drawer Background Co
 
 ## Issues & Feedback
 
-Please file an [issue](https://github.com/RalphNoel/KurukkuPattiyal/issues) to send feedback or report a bug. Thank you!
+Please file an [issue](https://github.com/RalphNoel/menu_kurkkupattiyal/issues) to send feedback or report a bug. Thank you!
 
 ## Contributing
 
