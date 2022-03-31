@@ -22,7 +22,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<MenuItem> listOfIcons = List<MenuItem>();
+  List<MenuItem> listOfIcons = <MenuItem>[];
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -32,7 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState.showSnackBar(new SnackBar(content: new Text(value)));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(new SnackBar(content: new Text(value)));
   }
 
   @override
@@ -41,14 +42,13 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(
-          'குறுக்குபட்டியல்',
-          style: TextStyle(fontWeight: FontWeight.bold)
-        ),
+        title: const Text('குறுக்குபட்டியல்',
+            style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: KurukkuPattiyalMenu(
           bodyContent: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 28.0, vertical: 8.0),
             child: Center(
               child: buildCard(),
             ),
@@ -118,7 +118,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Center(
                 child: Text(
                   'Swipe(Right to left) the indicator to see the menu.\nAnd also can change the position of the indicator.',
-                  style: TextStyle(fontSize: 14.0, color: Colors.white, height: 1.5),
+                  style: TextStyle(
+                      fontSize: 14.0, color: Colors.white, height: 1.5),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -138,7 +139,15 @@ class _HomeScreenState extends State<HomeScreen> {
       iconColor: Colors.black,
       iconSize: 26.0,
     ));
-    listOfIcons.add(MenuItem(image: 'assets/cookie.png', imageColor: Colors.black, isImage: true, imageSize: 5.0));
-    listOfIcons.add(MenuItem(image: 'assets/clear_cache.png', imageColor: Colors.black, isImage: true, imageSize: 5.0));
+    listOfIcons.add(MenuItem(
+        image: 'assets/cookie.png',
+        imageColor: Colors.black,
+        isImage: true,
+        imageSize: 5.0));
+    listOfIcons.add(MenuItem(
+        image: 'assets/clear_cache.png',
+        imageColor: Colors.black,
+        isImage: true,
+        imageSize: 5.0));
   }
 }

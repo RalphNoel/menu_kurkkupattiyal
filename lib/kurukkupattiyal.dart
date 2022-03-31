@@ -13,11 +13,11 @@ class KurukkuPattiyalMenu extends StatefulWidget {
 
   // பிரிப்பான் நிறத்தின் நிறம்
   // The Color of the Divider
-  final Color dividerColor;
+  final Color? dividerColor;
 
   // பிரிப்பானின் அளவு
   // The Size of the Divider
-  final double dividerSize;
+  final double? dividerSize;
 
   // மெனுவின் நிறம்
   // The Color of the Menu Indicator
@@ -37,7 +37,7 @@ class KurukkuPattiyalMenu extends StatefulWidget {
 
   // இடம் மாற்று மெனுவின் அளவு
   // The Size of the Dragging Bubble
-  final double dragBubbleSize;
+  final double? dragBubbleSize;
 
   // இடம் மாற்று மெனுவின் அகலம்
   // The Width of the Dragging Bubble
@@ -57,15 +57,15 @@ class KurukkuPattiyalMenu extends StatefulWidget {
 
   // மெனுவை அழுத்தும் போது செயல்படுத்தப்படுவது
   // Executed When the menu is Pressed
-  final Function(int) onTap;
+  final Function(int)? onTap;
 
   // ஸ்கேப்போல்டு விட்ஜெட் உட்பிரிவு
   // Body content of the scaffold
-  final Widget bodyContent;
+  final Widget? bodyContent;
 
   const KurukkuPattiyalMenu({
-    Key key,
-    @required this.listOfData,
+    Key? key,
+    required this.listOfData,
     this.drawerBGColor = Colors.white,
     this.dividerColor,
     this.dividerSize,
@@ -92,7 +92,7 @@ class _KurukkuPattiyalMenuState extends State<KurukkuPattiyalMenu> {
   int dragStart = 0;
   int triggered = 0;
   int endDeltaValue = 0;
-  ValueNotifier<double> valueListener;
+  ValueNotifier<double>? valueListener;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class _KurukkuPattiyalMenuState extends State<KurukkuPattiyalMenu> {
       key: _drawerKey,
       body: Stack(
         children: [
-          widget.bodyContent,
+          widget.bodyContent!,
           SwipeGest(
             drawerKey: _drawerKey,
             valueListener: valueListener,
@@ -139,12 +139,12 @@ class _KurukkuPattiyalMenuState extends State<KurukkuPattiyalMenu> {
 // ஒரு மெனுவின் தரவை வழங்குகிறது
 // Provides data For a Menu
 class MenuItem {
-  IconData icon;
-  final double iconSize;
-  final Color iconColor;
-  final String image;
-  final double imageSize;
-  final Color imageColor;
+  IconData? icon;
+  final double? iconSize;
+  final Color? iconColor;
+  final String? image;
+  final double? imageSize;
+  final Color? imageColor;
   final bool isImage;
   MenuItem(
       {this.icon, this.iconSize, this.iconColor, this.image, this.imageSize, this.imageColor, this.isImage = false});

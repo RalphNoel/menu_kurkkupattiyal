@@ -4,10 +4,10 @@ import 'kurukkupattiyal.dart';
 // This Class is Used to Show Menu
 class ListofIcons extends StatefulWidget {
   final List<MenuItem> children;
-  final Color dividerColor;
-  final double dividerSize;
-  final Function(int) onTap;
-  ListofIcons({Key key, @required this.children, this.dividerColor, this.dividerSize, this.onTap}) : super(key: key);
+  final Color? dividerColor;
+  final double? dividerSize;
+  final Function(int)? onTap;
+  ListofIcons({Key? key, required this.children, this.dividerColor, this.dividerSize, this.onTap}) : super(key: key);
 
   @override
   _ListofIconsState createState() => _ListofIconsState();
@@ -40,11 +40,11 @@ class _ListofIconsState extends State<ListofIcons> {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).pop();
-                  widget.onTap(i);
+                  widget.onTap!(i);
                 },
                 child: widget.children[i].isImage
                     ? Image.asset(
-                        widget.children[i].image,
+                        widget.children[i].image!,
                         scale: widget.children[i].imageSize,
                         color: widget.children[i].imageColor,
                       )

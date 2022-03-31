@@ -6,15 +6,15 @@ import 'package:flutter/gestures.dart';
 // ignore: must_be_immutable
 class SwipeGest extends StatefulWidget {
   SwipeGest({
-    Key key,
-    @required this.dragStart,
-    @required this.triggered,
-    @required this.isWidth,
-    @required this.endDeltaValue,
-    @required GlobalKey<ScaffoldState> drawerKey,
-    @required this.valueListener,
-    @required this.dragBubbleColor,
-    @required this.menuIndicatorColor,
+    Key? key,
+    required this.dragStart,
+    required this.triggered,
+    required this.isWidth,
+    required this.endDeltaValue,
+    required GlobalKey<ScaffoldState> drawerKey,
+    required this.valueListener,
+    required this.dragBubbleColor,
+    required this.menuIndicatorColor,
     this.menuIndicatorSize,
     this.menuIndicatorSizeWidth,
     this.dragBubbleSizeWidth,
@@ -28,14 +28,14 @@ class SwipeGest extends StatefulWidget {
   bool isWidth;
   int endDeltaValue;
   final GlobalKey<ScaffoldState> _drawerKey;
-  final ValueNotifier<double> valueListener;
+  final ValueNotifier<double>? valueListener;
   final Color dragBubbleColor;
   final Color menuIndicatorColor;
-  final double menuIndicatorSize;
-  final double menuIndicatorSizeWidth;
-  final double dragBubbleSizeWidth;
-  final double dragBubbleRadius;
-  final double menuIndicatorRadius;
+  final double? menuIndicatorSize;
+  final double? menuIndicatorSizeWidth;
+  final double? dragBubbleSizeWidth;
+  final double? dragBubbleRadius;
+  final double? menuIndicatorRadius;
   @override
   _SwipeGestState createState() => _SwipeGestState();
 }
@@ -51,12 +51,12 @@ class _SwipeGestState extends State<SwipeGest> {
           (AllowMultipleHorizontalDragGestureRecognizer instance) {
             instance.onStart = (DragStartDetails startdetails) {
               print('Horizontal Start');
-              widget.dragStart = startdetails.sourceTimeStamp.inMilliseconds;
+              widget.dragStart = startdetails.sourceTimeStamp!.inMilliseconds;
               widget.triggered = 0;
             };
             instance.onUpdate = (DragUpdateDetails updatedetails) {
               print('Horizontal Update');
-              int dragCurr = updatedetails.sourceTimeStamp.inMilliseconds;
+              int dragCurr = updatedetails.sourceTimeStamp!.inMilliseconds;
 
               if ((dragCurr - widget.dragStart) >= 500 && widget.triggered == 0) {
                 setState(() {
@@ -77,7 +77,7 @@ class _SwipeGestState extends State<SwipeGest> {
                 }
               });
               if (widget.endDeltaValue <= 500) {
-                widget._drawerKey.currentState.openEndDrawer();
+                widget._drawerKey.currentState!.openEndDrawer();
               }
             };
           },
@@ -91,9 +91,9 @@ class _SwipeGestState extends State<SwipeGest> {
             (AllowMultipleVerticalDragGestureRecognizer instance) {
               instance.onUpdate = (details) {
                 if (widget.isWidth == true) {
-                  widget.valueListener.value =
-                      (widget.valueListener.value + details.delta.dy / context.size.height).clamp(.0, 1.0);
-                  print(widget.valueListener.value);
+                  widget.valueListener!.value =
+                      (widget.valueListener!.value + details.delta.dy / context.size!.height).clamp(.0, 1.0);
+                  print(widget.valueListener!.value);
                   print(widget.isWidth);
                 } else {
                   widget.isWidth = false;
@@ -110,12 +110,12 @@ class _SwipeGestState extends State<SwipeGest> {
         child: Padding(
           padding: const EdgeInsets.all(0.0),
           child: AnimatedBuilder(
-            animation: widget.valueListener,
+            animation: widget.valueListener!,
             builder: (context, child) {
               return Align(
                 alignment: Alignment(
                   1,
-                  widget.valueListener.value * 2 - 1,
+                  widget.valueListener!.value * 2 - 1,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -133,8 +133,8 @@ class _SwipeGestState extends State<SwipeGest> {
                       decoration: BoxDecoration(
                         color: widget.isWidth ? widget.dragBubbleColor : widget.menuIndicatorColor,
                         borderRadius: widget.isWidth
-                            ? BorderRadius.circular(widget.dragBubbleRadius)
-                            : BorderRadius.circular(widget.menuIndicatorRadius),
+                            ? BorderRadius.circular(widget.dragBubbleRadius!)
+                            : BorderRadius.circular(widget.menuIndicatorRadius!),
                       ),
                     ),
                   ],
